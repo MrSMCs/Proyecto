@@ -87,9 +87,9 @@ app.get('/', (req, res) => {
 
 // Proceso de registro y redirección a la página de inicio de sesión
 app.post('/', (req, res) => {
-    const { nombre } = req.body;
-    const insertQuery = 'INSERT INTO usuarios (nombre) VALUES (?)';
-    connection.query(insertQuery, [nombre], (err, results) => {
+    const { nombre, correo, contraseña } = req.body;
+    const insertQuery = 'INSERT INTO usuarios (nombre, correo, contraseña) VALUES (?, ?, ?)';
+    connection.query(insertQuery, [nombre, correo, contraseña], (err, results) => {
        if (err) {
           console.error('Error al registrar el usuario:', err);
           res.status(500).send('Error interno del servidor');
